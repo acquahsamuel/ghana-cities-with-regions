@@ -1,4 +1,4 @@
-const ErrorResponse = require("../utils/errorReponse");
+const AppError = require("../utils/appError");
 
 const errorHandler = (err, req, res, next) => {
     let error = {
@@ -29,13 +29,12 @@ const errorHandler = (err, req, res, next) => {
         error = new ErrorResponse(message, 404);
     }
 
-    console.log(err);
-
-
     res.status(error.statusCode || 500).json({
         success: false,
         error: error.message || 'Server Error'
     });
 };
 
-module.exports = errorHandler;
+
+module.exports = AppError;
+

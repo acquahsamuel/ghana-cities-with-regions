@@ -1,88 +1,99 @@
-const path = require('path');
-const dotenv = require('dotenv');
-const morgan = require('morgan');
-const colors = require('colors');
-const helmet = require('helmet');
-const xss = require('xss-clean');
-const express = require('express');
-const hpp = require('hpp');
-const cors = require('cors');
-const fileupload = require('express-fileupload');
-const cookieParser = require('cookie-parser');
-const mongoSanitize = require('express-mongo-sanitize');
-const rateLimit = require('express-rate-limit');
-const errorHandler = require('./middleware/async');
-const connectDB = require('./config/db');
+const path = require('path')
+const dotenv = require('dotenv')
+const morgan = require('morgan')
+const colors = require('colors')
+const helmet = require('helmet')
+const xss = require('xss-clean')
+const express = require('express')
+const hpp = require('hpp')
+const cors = require('cors')
+const fileupload = require('express-fileupload')
+const cookieParser = require('cookie-parser')
+const mongoSanitize = require('express-mongo-sanitize')
+const rateLimit = require('express-rate-limit')
+const connectDB = require('./config/db')
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 
 // Load env vars
-dotenv.config({path: './config/config.env'});
+dotenv.config({ path: './config/config.env' })
 
 // Connect to database
-connectDB();
+connectDB()
 
 // Route files
-const cities = require('./routes/cities');
-const regions = require('./routes/regions');
+const cities = require('./routes/citiesRoutes')
+const regions = require('./routes/regionsRoutes')
 
-
-const app = express();
+const app = express()
 
 // Body parser
-app.use(express.json());
+app.use(express.json())
 
 // Cookie parser
-app.use(cookieParser());
+app.use(cookieParser())
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
+  app.use(morgan('dev'))
 }
 
 // File uploading
-app.use(fileupload());
+app.use(fileupload())
 
 // Sanitize data
-app.use(mongoSanitize());
+app.use(mongoSanitize())
 
 // Set security headers
-app.use(helmet());
+app.use(helmet())
 
 // Prevent XSS attacks
-app.use(xss());
+app.use(xss())
 
 // Rate limiting
 const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10 mins
-    max: 100
-});
-app.use(limiter);
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: 100
+})
+app.use(limiter)
 
 // Prevent http param pollution
-app.use(hpp());
+app.use(hpp())
 
 // Enable CORS
-app.use(cors());
+app.use(cors())
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Mount routers
-app.use('/api/v1/cities', cities);
-app.use('/api/v1/regions' , regions);
+app.use('/api/v1/cities', cities)
+app.use('/api/v1/regions', regions)
 
-app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server` , 404));
+})
 
-const server = app.listen(PORT, console.log(`Server running in ${
-    process.env.NODE_ENV
-} mode on port ${PORT}`.yellow.bold));
+
+app.use(globalErrorHandler);
+
+
+const PORT = process.env.PORT || 5000
+const server = app.listen(
+  PORT,
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  )
+)
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
-    console.log(`Error: ${
-        err.message
-    }`.red);
-    // Close server & exit process
-    // server.close(() => process.exit(1));
-});
+  console.log(`Error: ${err.message}`.red)
+})
+
+
+
+
+
+

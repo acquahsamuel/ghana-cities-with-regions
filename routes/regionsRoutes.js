@@ -1,5 +1,5 @@
 const express = require('express');
-const { getRegions , createRegion }= require('../controllers/regions');
+const { getRegions , createRegion }= require('../controllers/regionsController');
 const router = express.Router();
 
 
