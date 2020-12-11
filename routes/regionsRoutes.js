@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route('/')
 .get(getRegions)
-.post(createRegion);
+// .post(createRegion);
 
 module.exports = router;

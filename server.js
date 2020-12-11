@@ -72,7 +72,7 @@ app.use('/api/v1/regions', regions)
 
 
 app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server` , 404));
+  next(new AppError(`Ooop's can't find ${req.originalUrl}, ${req.method} on this server` , 404));
 })
 
 
@@ -91,6 +91,7 @@ const server = app.listen(
 process.on('unhandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`.red)
 })
+
 
 
 

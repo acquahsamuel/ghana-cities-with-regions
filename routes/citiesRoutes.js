@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.route('/')
 .get(getCities)
-.post(createCities);
+// .post(createCities);
 
 module.exports = router;
+
