@@ -9,8 +9,6 @@ const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message
-    // error: err,
-    // stack: err.stack
   })
 }
 
@@ -20,7 +18,7 @@ const sendErrorProd = (err, res) => {
       status: err.status,
       message: err.message
     })
-    /** Programming or other unknow error : don't expose error details  */
+
   } else {
     /**Log Error */
     console.error('ERROR', err)
