@@ -1,9 +1,7 @@
 # ghana-cities-with-regions
 Ghana cities and regions api. for your project. Updated with the new regions
 
-
-# API Documentation Example
-This API uses `POST` request to communicate and HTTP [response codes](https://ghana-cities-api.herokuapp.com/) to indenticate status and errors. All responses come in standard JSON. All requests must include a `content-type` of `application/json` and the body must be valid JSON.
+This API uses `POST && GET` request to communicate and HTTP [response codes](https://ghana-cities-api.herokuapp.com/) to indenticate status and errors. All responses come in standard JSON. All requests must include a `content-type` of `application/json` and the body must be valid JSON.
 
 ## Response Codes 
 ### Response Codes
