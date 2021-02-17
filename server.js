@@ -64,12 +64,18 @@ app.use(hpp())
 app.use(cors())
 
 // Set static folder
+app.set('view engine' , 'ejs');
+app.set('views' , path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Mount routers
 app.use('/api/v1/cities', cities)
 app.use('/api/v1/regions', regions)
 
+
+app.get('/' ,(req, res)=>{
+  res.render('index');
+})
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Ooop's can't find ${req.originalUrl}, ${req.method} on this server` , 404));
