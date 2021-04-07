@@ -6,7 +6,7 @@ This API uses `POST && GET` request to communicate and HTTP [response codes](htt
 
 #### Request Endpoints
 
-| URL         | URL                                                   |
+| Data        | URL Endpoint                                          |
 |-------------|-------------------------------------------------------|
 | Get Cities  | https://ghana-cities-api.herokuapp.com/api/v1/cities  |
 | Get Regions | https://ghana-cities-api.herokuapp.com/api/v1/regions |
