@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
 app.all('*', (req, res, next) => {
   next(
     new AppError(
-      `Ooop's can't find ${req.originalUrl}, ${req.method} on this server`,
+      `Ooop's can't find ${req.originalUrl}, ${req.method} on this server..`,
       404
     )
   );
