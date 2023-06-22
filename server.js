@@ -76,7 +76,10 @@ app.use('/api/v1/regions', regions);
 
 app.get('/', (req, res) => {
   // res.render('index');
-  res.send('Ghana regions with cites deployed on heroku as a free service. It might be down, refer repo _data directory for (data)');
+  // res.send('Ghana regions with cites deployed on heroku as a free service. It might be down, refer repo _data directory for (data)');
+  res.json({
+    "Welcome" : "Ghana regions with cites deployed on heroku as a free service. It might be down, refer repo _data directory for (data)"
+  })
 });
 
 
