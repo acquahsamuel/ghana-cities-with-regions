@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -13,7 +14,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const AppError = require('./utils/appError');
-require('dotenv').config()
 const globalErrorHandler = require('./controllers/errorController');
 
 
@@ -64,17 +64,15 @@ app.use(hpp());
 app.use(cors());
 
 // Set static folder
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Mount routers
 app.use('/api/v1/cities', cities);
 app.use('/api/v1/regions', regions);
 
-// app.get('/', (req, res) => {
-//   res.render('index');
-// });
+
 
 app.get('/', (req, res) => {
   // res.render('index');
