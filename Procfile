@@ -1,2 +1,1 @@
-<!-- node : ./src/server.js -->
-node : server.js
+web: node server.js
