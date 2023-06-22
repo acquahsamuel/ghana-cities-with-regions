@@ -13,10 +13,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const AppError = require('./utils/appError');
+require('dotenv').config()
 const globalErrorHandler = require('./controllers/errorController');
 
-// Load env vars
-dotenv.config({path: './config/config.env'});
+
 
 // Connect to database
 connectDB();
@@ -72,9 +72,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1/cities', cities);
 app.use('/api/v1/regions', regions);
 
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
+
 app.get('/', (req, res) => {
-  res.render('index');
+  // res.render('index');
+  res.send('Ghana regions with cites deployed on heroku as a free service. It might be down, refer repo _data directory for (data)');
 });
+
 
 app.all('*', (req, res, next) => {
   next(

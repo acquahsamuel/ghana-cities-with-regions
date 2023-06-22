@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI_LOCAL, {
+  const conn = await mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -14,3 +14,4 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
