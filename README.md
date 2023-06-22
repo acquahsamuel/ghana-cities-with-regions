@@ -24,7 +24,5 @@ This API uses `POST && GET` request to communicate and HTTP [response codes](htt
 400: Bad request
 401: Unauthorized
 404: Cannot be found
-405: Method not allowed
-422: Unprocessable Entity 
 50X: Server Error
 ```
