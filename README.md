@@ -12,8 +12,8 @@ This API uses `POST && GET` request to communicate and HTTP [response codes](htt
 
 | Data        | URL Endpoint                                          |
 |-------------|-------------------------------------------------------|
-| Get Cities  | https://ghana-cities-regions-api-99f47834c834.herokuapp.com/api/v1/regions  |
-| Get Regions | https://ghana-cities-regions-api-99f47834c834.herokuapp.com/api/v1/cites |
+| Get Regions  | https://ghana-cities-regions-api-99f47834c834.herokuapp.com/api/v1/regions  |
+| Get Cities | https://ghana-cities-regions-api-99f47834c834.herokuapp.com/api/v1/cites |
 
 
 
